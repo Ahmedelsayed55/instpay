@@ -46,13 +46,126 @@ const InstPay = () => {
     let newWithdraw = +inputAmount.current.value;
     let newBalance = balance - newWithdraw;
     setBalance(newBalance);
-    let newHistory = [...history, { type: "deposit", amount: newWithdraw, balanceNow: newBalance ,date: new Date().toISOString().split("T")[0]},
+    let newHistory = [...history, { type: "withdraw", amount: newWithdraw, balanceNow: newBalance ,date: new Date().toISOString().split("T")[0]},
     ];
     setHistory(newHistory);
     inputAmount.current.value = "";
     localStorage.setItem("balance", newBalance);
     localStorage.setItem("history", JSON.stringify(newHistory));
   };
+
+
+// Handel Deposit Buttons
+
+let handelButton200 = () => {
+  setBalance(balance + 200);
+  let newHistory = [...history, { type: "deposit", amount: 200, balanceNow: balance + 200 ,date: new Date().toISOString().split("T")[0]},
+  ];
+  setHistory(newHistory);
+  localStorage.setItem("balance", balance + 200);
+  localStorage.setItem("history", JSON.stringify(newHistory));
+}
+let handelButton500 = () => {
+  setBalance(balance + 500);
+  let newHistory = [...history, { type: "deposit", amount: 500, balanceNow: balance + 500 ,date: new Date().toISOString().split("T")[0]},
+  ];
+  setHistory(newHistory);
+  localStorage.setItem("balance", balance + 500);
+  localStorage.setItem("history", JSON.stringify(newHistory));
+}
+let handelButton1000 = () => {
+  setBalance(balance + 1000);
+  let newHistory = [...history, { type: "deposit", amount: 1000, balanceNow: balance + 1000 ,date: new Date().toISOString().split("T")[0]},
+  ];
+  setHistory(newHistory);
+  localStorage.setItem("balance", balance + 1000);
+  localStorage.setItem("history", JSON.stringify(newHistory));
+}
+let handelButton2000 = () => {
+  setBalance(balance + 2000);
+  let newHistory = [...history, { type: "deposit", amount: 2000, balanceNow: balance + 2000 ,date: new Date().toISOString().split("T")[0]},
+  ];
+  setHistory(newHistory);
+  localStorage.setItem("balance", balance + 2000);
+  localStorage.setItem("history", JSON.stringify(newHistory));
+}
+let handelButton3000 = () => {
+  setBalance(balance + 3000);
+  let newHistory = [...history, { type: "deposit", amount: 3000, balanceNow: balance + 3000 ,date: new Date().toISOString().split("T")[0]},
+  ];
+  setHistory(newHistory);
+  localStorage.setItem("balance", balance + 3000);
+  localStorage.setItem("history", JSON.stringify(newHistory));
+}
+let handelButton5000 = () => {
+  setBalance(balance + 5000);
+  let newHistory = [...history, { type: "deposit", amount: 5000, balanceNow: balance + 5000 ,date: new Date().toISOString().split("T")[0]},
+  ];
+  setHistory(newHistory);
+  localStorage.setItem("balance", balance + 5000);
+  localStorage.setItem("history", JSON.stringify(newHistory));
+}
+
+
+
+
+// Handel Withdraw Buttons
+
+let handelButtonW200 = () => {
+  setBalance(balance - 200);
+  let newHistory = [...history, { type: "withdraw", amount: 200, balanceNow: balance - 200 ,date: new Date().toISOString().split("T")[0]},
+  ];
+  setHistory(newHistory);
+  localStorage.setItem("balance", balance - 200);
+  localStorage.setItem("history", JSON.stringify(newHistory));
+}
+let handelButtonW500 = () => {
+  setBalance(balance - 500);
+  let newHistory = [...history, { type: "withdraw", amount: 500, balanceNow: balance - 500 ,date: new Date().toISOString().split("T")[0]},
+  ];
+  setHistory(newHistory);
+  localStorage.setItem("balance", balance - 500);
+  localStorage.setItem("history", JSON.stringify(newHistory));
+}
+let handelButtonW1000 = () => {
+  setBalance(balance - 1000);
+  let newHistory = [...history, { type: "withdraw", amount: 1000, balanceNow: balance - 1000 ,date: new Date().toISOString().split("T")[0]},
+  ];
+  setHistory(newHistory);
+  localStorage.setItem("balance", balance - 1000);
+  localStorage.setItem("history", JSON.stringify(newHistory));
+}
+let handelButtonW2000 = () => {
+  setBalance(balance - 2000);
+  let newHistory = [...history, { type: "withdraw", amount: 2000, balanceNow: balance - 2000 ,date: new Date().toISOString().split("T")[0]},
+  ];
+  setHistory(newHistory);
+  localStorage.setItem("balance", balance - 2000);
+  localStorage.setItem("history", JSON.stringify(newHistory));
+}
+let handelButtonW3000 = () => {
+  setBalance(balance - 3000);
+  let newHistory = [...history, { type: "withdraw", amount: 3000, balanceNow: balance - 3000 ,date: new Date().toISOString().split("T")[0]},
+  ];
+  setHistory(newHistory);
+  localStorage.setItem("balance", balance - 3000);
+  localStorage.setItem("history", JSON.stringify(newHistory));
+}
+let handelButtonW5000 = () => {
+  setBalance(balance - 5000);
+  let newHistory = [...history, { type: "withdraw", amount: 5000, balanceNow: balance - 5000 ,date: new Date().toISOString().split("T")[0]},
+  ];
+  setHistory(newHistory);
+  localStorage.setItem("balance", balance - 5000);
+  localStorage.setItem("history", JSON.stringify(newHistory));
+}
+
+
+
+
+
+
+
   return (
     <div>
       <div className="container mx-auto p-4 flex flex-col gap-6 items-center">
@@ -98,49 +211,37 @@ const InstPay = () => {
               <div className="grid grid-cols-3  gap-3">
                 <button
                   className="btn btn-success"
-                  onClick={() => {
-                    setBalance(balance + 200);
-                  }}
+                  onClick={handelButton200}
                 >
                   200
                 </button>
                 <button
                   className="btn btn-success"
-                  onClick={() => {
-                    setBalance(balance + 500);
-                  }}
+                  onClick={handelButton500}
                 >
                   500
                 </button>
                 <button
                   className="btn btn-success"
-                  onClick={() => {
-                    setBalance(balance + 1000);
-                  }}
+                  onClick={handelButton1000}
                 >
                   1000
                 </button>
                 <button
                   className="btn btn-success"
-                  onClick={() => {
-                    setBalance(balance + 2000);
-                  }}
+                  onClick={handelButton2000}
                 >
                   2000
                 </button>
                 <button
                   className="btn btn-success"
-                  onClick={() => {
-                    setBalance(balance + 3000);
-                  }}
+                  onClick={handelButton3000}
                 >
                   3000
                 </button>
                 <button
                   className="btn btn-success"
-                  onClick={() => {
-                    setBalance(balance + 5000);
-                  }}
+                  onClick={handelButton5000}
                 >
                   5000
                 </button>
@@ -186,7 +287,7 @@ const InstPay = () => {
                   className="btn btn-error"
                   onClick={() => {
                     balance >= 200
-                      ? setBalance(balance - 200)
+                      ? handelButtonW200()
                       : alert(
                           "صعبت عليا استني خد الجنيه دا ومتخليش حد يكلمك كدا تاني "
                         );
@@ -198,7 +299,7 @@ const InstPay = () => {
                   className="btn btn-error"
                   onClick={() => {
                     balance >= 500
-                      ? setBalance(balance - 500)
+                      ? handelButtonW500()
                       : alert("يلا ياكحيان مفيش معاك فلوس تكفي");
                   }}
                 >
@@ -208,7 +309,7 @@ const InstPay = () => {
                   className="btn btn-error"
                   onClick={() => {
                     balance >= 1000
-                      ? setBalance(balance - 1000)
+                      ? handelButtonW1000()
                       : alert("شوفلك شغلانه يافقير");
                   }}
                 >
@@ -218,7 +319,7 @@ const InstPay = () => {
                   className="btn btn-error"
                   onClick={() => {
                     balance >= 2000
-                      ? setBalance(balance - 2000)
+                      ? handelButtonW2000()
                       : alert("مش معاك يكمل يافقير");
                   }}
                 >
@@ -228,7 +329,7 @@ const InstPay = () => {
                   className="btn btn-error"
                   onClick={() => {
                     balance >= 3000
-                      ? setBalance(balance - 3000)
+                      ? handelButtonW3000()
                       : alert(" انت فقير ياه");
                   }}
                 >
@@ -238,7 +339,7 @@ const InstPay = () => {
                   className="btn btn-error"
                   onClick={() => {
                     balance >= 5000
-                      ? setBalance(balance - 5000)
+                      ? handelButtonW5000()
                       : alert("مش معاك يكمل يامعلم");
                   }}
                 >
