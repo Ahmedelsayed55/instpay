@@ -8,7 +8,7 @@ const InstPay = () => {
   const [customAmount, setCustomAmount] = useState(false);
   let inputAmount = useRef();
   const [showHistory, setShowHistory] = useState(false);
-  const [history, setHistory] = useState([ JSON.parse(localStorage.getItem("history")) || []]);
+  const [history, setHistory] = useState( JSON.parse(localStorage.getItem("history")) || []);
  let handleDeleteHistory = (index) => {
     let newHistory = history.filter((item, i) => i !== index);
     setHistory(newHistory);
@@ -35,7 +35,7 @@ const InstPay = () => {
     let newDeposit = +inputAmount.current.value;
     let newBalance = balance + newDeposit;
     setBalance(newBalance);
-    let newHistory = [...history, { type: "deposit", amount: newDeposit, date: new Date().toISOString().split("T")[0] },
+    let newHistory = [...history, { type: "deposit", amount: newDeposit, balanceNow: newBalance ,date: new Date().toISOString().split("T")[0] },
     ];
     setHistory(newHistory);
     inputAmount.current.value = "";
@@ -46,7 +46,7 @@ const InstPay = () => {
     let newWithdraw = +inputAmount.current.value;
     let newBalance = balance - newWithdraw;
     setBalance(newBalance);
-    let newHistory = [...history, { type: "withdraw", amount: newWithdraw, date: new Date().toISOString().split("T")[0] },
+    let newHistory = [...history, { type: "deposit", amount: newWithdraw, balanceNow: newBalance ,date: new Date().toISOString().split("T")[0]},
     ];
     setHistory(newHistory);
     inputAmount.current.value = "";
@@ -284,12 +284,14 @@ const InstPay = () => {
               </thead>
               <tbody>
                 {
+
                   history.map((item,index)=>{
                     return(
                       <tr key={index}>
                       <th>{index + 1}</th>
                       <td className={`font-bold ${item.type == "deposit" ? "text-green-600" : "text-red-600"}`}>{item.type}</td>
-                      <td>{item.amount +"EGP"}</td>
+                      <td>{item.amount + " EGP"}</td>
+                      <td>{item.balanceNow + " EGP"}</td>
                       <td>{item.date}</td>
                       <td><button className="btn  cursor-pointer" onClick={() => handleDeleteHistory(index)}>❌</button></td>
                     </tr>
