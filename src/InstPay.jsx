@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 
 const InstPay = () => {
-  const [balance, setBalance] = useState(1000);
+  const [balance, setBalance] = useState(0);
   const [showBalance, setShowBalance] = useState(false);
   const [deposit, setDeposit] = useState(false);
   const [withdraw, setWithdraw] = useState(false);
