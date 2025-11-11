@@ -35,7 +35,7 @@ const InstPay = () => {
     let newDeposit = +inputAmount.current.value;
     let newBalance = balance + newDeposit;
     setBalance(newBalance);
-    let newHistory = [...history, { type: "deposit", amount: newDeposit, balanceNow: newBalance ,date: new Date().toISOString().split("T")[0] },
+    let newHistory = [...history, { type: "deposit", amount: newDeposit, balanceNow: newBalance ,date: new Date().toISOString().split("T")[0],time: new Date().toISOString().split("T")[1] },
     ];
     setHistory(newHistory);
     inputAmount.current.value = "";
@@ -46,7 +46,7 @@ const InstPay = () => {
     let newWithdraw = +inputAmount.current.value;
     let newBalance = balance - newWithdraw;
     setBalance(newBalance);
-    let newHistory = [...history, { type: "withdraw", amount: newWithdraw, balanceNow: newBalance ,date: new Date().toISOString().split("T")[0]},
+    let newHistory = [...history, { type: "withdraw", amount: newWithdraw, balanceNow: newBalance ,date: new Date().toISOString().split("T")[0],time: new Date().toISOString().split("T")[1]},
     ];
     setHistory(newHistory);
     inputAmount.current.value = "";
@@ -59,7 +59,7 @@ const InstPay = () => {
 
 let handelButton200 = () => {
   setBalance(balance + 200);
-  let newHistory = [...history, { type: "deposit", amount: 200, balanceNow: balance + 200 ,date: new Date().toISOString().split("T")[0]},
+  let newHistory = [...history, { type: "deposit", amount: 200, balanceNow: balance + 200 ,date: new Date().toISOString().split("T")[0],time: new Date().toISOString().split("T")[1]},
   ];
   setHistory(newHistory);
   localStorage.setItem("balance", balance + 200);
@@ -67,7 +67,7 @@ let handelButton200 = () => {
 }
 let handelButton500 = () => {
   setBalance(balance + 500);
-  let newHistory = [...history, { type: "deposit", amount: 500, balanceNow: balance + 500 ,date: new Date().toISOString().split("T")[0]},
+  let newHistory = [...history, { type: "deposit", amount: 500, balanceNow: balance + 500 ,date: new Date().toISOString().split("T")[0],time: new Date().toISOString().split("T")[1]},
   ];
   setHistory(newHistory);
   localStorage.setItem("balance", balance + 500);
@@ -75,7 +75,7 @@ let handelButton500 = () => {
 }
 let handelButton1000 = () => {
   setBalance(balance + 1000);
-  let newHistory = [...history, { type: "deposit", amount: 1000, balanceNow: balance + 1000 ,date: new Date().toISOString().split("T")[0]},
+  let newHistory = [...history, { type: "deposit", amount: 1000, balanceNow: balance + 1000 ,date: new Date().toISOString().split("T")[0],time: new Date().toISOString().split("T")[1]},
   ];
   setHistory(newHistory);
   localStorage.setItem("balance", balance + 1000);
@@ -83,7 +83,7 @@ let handelButton1000 = () => {
 }
 let handelButton2000 = () => {
   setBalance(balance + 2000);
-  let newHistory = [...history, { type: "deposit", amount: 2000, balanceNow: balance + 2000 ,date: new Date().toISOString().split("T")[0]},
+  let newHistory = [...history, { type: "deposit", amount: 2000, balanceNow: balance + 2000 ,date: new Date().toISOString().split("T")[0],time: new Date().toISOString().split("T")[1]},
   ];
   setHistory(newHistory);
   localStorage.setItem("balance", balance + 2000);
@@ -91,7 +91,7 @@ let handelButton2000 = () => {
 }
 let handelButton3000 = () => {
   setBalance(balance + 3000);
-  let newHistory = [...history, { type: "deposit", amount: 3000, balanceNow: balance + 3000 ,date: new Date().toISOString().split("T")[0]},
+  let newHistory = [...history, { type: "deposit", amount: 3000, balanceNow: balance + 3000 ,date: new Date().toISOString().split("T")[0],time: new Date().toISOString().split("T")[1]},
   ];
   setHistory(newHistory);
   localStorage.setItem("balance", balance + 3000);
@@ -99,7 +99,7 @@ let handelButton3000 = () => {
 }
 let handelButton5000 = () => {
   setBalance(balance + 5000);
-  let newHistory = [...history, { type: "deposit", amount: 5000, balanceNow: balance + 5000 ,date: new Date().toISOString().split("T")[0]},
+  let newHistory = [...history, { type: "deposit", amount: 5000, balanceNow: balance + 5000 ,date: new Date().toISOString().split("T")[0],time: new Date().toISOString().split("T")[1]},
   ];
   setHistory(newHistory);
   localStorage.setItem("balance", balance + 5000);
@@ -113,7 +113,7 @@ let handelButton5000 = () => {
 
 let handelButtonW200 = () => {
   setBalance(balance - 200);
-  let newHistory = [...history, { type: "withdraw", amount: 200, balanceNow: balance - 200 ,date: new Date().toISOString().split("T")[0]},
+  let newHistory = [...history, { type: "withdraw", amount: 200, balanceNow: balance - 200 ,date: new Date().toISOString().split("T")[0],time: new Date().toISOString().split("T")[1]},
   ];
   setHistory(newHistory);
   localStorage.setItem("balance", balance - 200);
@@ -121,7 +121,7 @@ let handelButtonW200 = () => {
 }
 let handelButtonW500 = () => {
   setBalance(balance - 500);
-  let newHistory = [...history, { type: "withdraw", amount: 500, balanceNow: balance - 500 ,date: new Date().toISOString().split("T")[0]},
+  let newHistory = [...history, { type: "withdraw", amount: 500, balanceNow: balance - 500 ,date: new Date().toISOString().split("T")[0],time: new Date().toISOString().split("T")[1]},
   ];
   setHistory(newHistory);
   localStorage.setItem("balance", balance - 500);
@@ -129,7 +129,7 @@ let handelButtonW500 = () => {
 }
 let handelButtonW1000 = () => {
   setBalance(balance - 1000);
-  let newHistory = [...history, { type: "withdraw", amount: 1000, balanceNow: balance - 1000 ,date: new Date().toISOString().split("T")[0]},
+  let newHistory = [...history, { type: "withdraw", amount: 1000, balanceNow: balance - 1000 ,date: new Date().toISOString().split("T")[0],time: new Date().toISOString().split("T")[1]},
   ];
   setHistory(newHistory);
   localStorage.setItem("balance", balance - 1000);
@@ -137,7 +137,7 @@ let handelButtonW1000 = () => {
 }
 let handelButtonW2000 = () => {
   setBalance(balance - 2000);
-  let newHistory = [...history, { type: "withdraw", amount: 2000, balanceNow: balance - 2000 ,date: new Date().toISOString().split("T")[0]},
+  let newHistory = [...history, { type: "withdraw", amount: 2000, balanceNow: balance - 2000 ,date: new Date().toISOString().split("T")[0],time: new Date().toISOString().split("T")[1]},
   ];
   setHistory(newHistory);
   localStorage.setItem("balance", balance - 2000);
@@ -145,7 +145,7 @@ let handelButtonW2000 = () => {
 }
 let handelButtonW3000 = () => {
   setBalance(balance - 3000);
-  let newHistory = [...history, { type: "withdraw", amount: 3000, balanceNow: balance - 3000 ,date: new Date().toISOString().split("T")[0]},
+  let newHistory = [...history, { type: "withdraw", amount: 3000, balanceNow: balance - 3000 ,date: new Date().toISOString().split("T")[0],time: new Date().toISOString().split("T")[1]},
   ];
   setHistory(newHistory);
   localStorage.setItem("balance", balance - 3000);
@@ -153,7 +153,7 @@ let handelButtonW3000 = () => {
 }
 let handelButtonW5000 = () => {
   setBalance(balance - 5000);
-  let newHistory = [...history, { type: "withdraw", amount: 5000, balanceNow: balance - 5000 ,date: new Date().toISOString().split("T")[0]},
+  let newHistory = [...history, { type: "withdraw", amount: 5000, balanceNow: balance - 5000 ,date: new Date().toISOString().split("T")[0],time: new Date().toISOString().split("T")[1]},
   ];
   setHistory(newHistory);
   localStorage.setItem("balance", balance - 5000);
@@ -380,7 +380,10 @@ let handelButtonW5000 = () => {
                   <th>#</th>
                   <th>Type</th>
                   <th>Amount</th>
+                  <th>Balance</th>
                   <th>Date</th>
+                  <th>time</th>
+                  <th>delete</th>
                 </tr>
               </thead>
               <tbody>
@@ -394,6 +397,7 @@ let handelButtonW5000 = () => {
                       <td>{item.amount + " EGP"}</td>
                       <td>{item.balanceNow + " EGP"}</td>
                       <td>{item.date}</td>
+                      <td>{item.time}</td>
                       <td><button className="btn  cursor-pointer" onClick={() => handleDeleteHistory(index)}>❌</button></td>
                     </tr>
                     )
