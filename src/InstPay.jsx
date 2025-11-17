@@ -1,14 +1,15 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 const InstPay = () => {
-  const [balance, setBalance] = useState(JSON.parse(localStorage.getItem("balance")) || 0);
+  const [balance, setBalance] = useState();
   const [showBalance, setShowBalance] = useState(false);
   const [deposit, setDeposit] = useState(false);
   const [withdraw, setWithdraw] = useState(false);
   const [customAmount, setCustomAmount] = useState(false);
   let inputAmount = useRef();
   const [showHistory, setShowHistory] = useState(false);
-  const [history, setHistory] = useState( JSON.parse(localStorage.getItem("history")) || []);
+  const [history, setHistory] = useState();
+
  let handleDeleteHistory = (index) => {
     let newHistory = history.filter((item, i) => i !== index);
     setHistory(newHistory);
@@ -43,15 +44,22 @@ const InstPay = () => {
     localStorage.setItem("history", JSON.stringify(newHistory));
   };
   let handleCustomAmountWithdraw = () => {
-    let newWithdraw = +inputAmount.current.value;
-    let newBalance = balance - newWithdraw;
-    setBalance(newBalance);
-    let newHistory = [...history, { type: "withdraw", amount: newWithdraw, balanceNow: newBalance ,date: new Date().toISOString().split("T")[0],time: new Date().toISOString().split("T")[1]},
-    ];
-    setHistory(newHistory);
-    inputAmount.current.value = "";
-    localStorage.setItem("balance", newBalance);
-    localStorage.setItem("history", JSON.stringify(newHistory));
+    if (balance >= +inputAmount.current.value) {
+      
+      let newWithdraw = +inputAmount.current.value;
+      let newBalance = balance - newWithdraw;
+      setBalance(newBalance);
+      let newHistory = [...history, { type: "withdraw", amount: newWithdraw, balanceNow: newBalance ,date: new Date().toISOString().split("T")[0],time: new Date().toISOString().split("T")[1]},
+      ];
+      setHistory(newHistory);
+      inputAmount.current.value = "";
+      localStorage.setItem("balance", newBalance);
+      localStorage.setItem("history", JSON.stringify(newHistory));
+    }
+    else {
+      inputAmount.current.value = "";
+      alert("مش معاك يكمل يامعلم");
+    }
   };
 
 
@@ -163,7 +171,12 @@ let handelButtonW5000 = () => {
 
 
 
-
+  useEffect(()=>{
+    let balanceGet = localStorage.getItem("balance") || 0;
+    setBalance( +balanceGet);
+    let historyGet = JSON.parse(localStorage.getItem("history")) || [];
+    setHistory(historyGet)
+  },[])
 
 
   return (
