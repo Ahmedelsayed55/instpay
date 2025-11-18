@@ -1,6 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import NavBar from "./NavBar";
+import Swal from "sweetalert2";
 
 const InstPay = () => {
+   let isLoggedIn = localStorage.getItem("userToken") === "loggedIn" ? true : false;
   const [balance, setBalance] = useState();
   const [showBalance, setShowBalance] = useState(false);
   const [deposit, setDeposit] = useState(false);
@@ -11,6 +15,7 @@ const InstPay = () => {
   const [history, setHistory] = useState();
 
  let handleDeleteHistory = (index) => {
+
     let newHistory = history.filter((item, i) => i !== index);
     setHistory(newHistory);
     localStorage.setItem("history", JSON.stringify(newHistory));
@@ -169,18 +174,24 @@ let handelButtonW5000 = () => {
 }
 
 
-
+const navigate = useNavigate();
 
   useEffect(()=>{
-    let balanceGet = localStorage.getItem("balance") || 0;
-    setBalance( +balanceGet);
-    let historyGet = JSON.parse(localStorage.getItem("history")) || [];
-    setHistory(historyGet)
+     
+    
+
+      let balanceGet = localStorage.getItem("balance") || 0;
+      setBalance( +balanceGet);
+      let historyGet = JSON.parse(localStorage.getItem("history")) || [];
+      setHistory(historyGet)
+   
+
   },[])
 
 
   return (
     <div>
+      <NavBar />
       <div className="container mx-auto p-4 flex flex-col gap-6 items-center">
         <h1 className="text-2xl font-bold text-center">
           Your Balance is :$ {showBalance ? balance : "*****"}{" "}
@@ -188,13 +199,41 @@ let handelButtonW5000 = () => {
         <div className="flex gap-4">
           <button
             className="btn btn-primary"
-            onClick={() => setShowBalance(!showBalance)}
+            onClick={() =>{ 
+              isLoggedIn? setShowBalance(!showBalance) : (
+                Swal.fire({
+                  icon: 'warning',
+                  showCancelButton: true,
+                  title: 'ياعم سجل الاول وبعدين شوف الرصيد ',
+                  text: 'عايز تشوف رصيد اي حد وخلاص ياخلبوص',
+                   confirmButtonText: "خلصانه وديني اسجل"
+                }).then((result) => {
+                  if (result.isConfirmed) {
+                    navigate("/login")
+                  }
+                }
+              ))
+              }}
           >
             {showBalance ? "Hide Balance" : "Show Balance"}
           </button>
           <button
             className="btn btn-secondary"
-            onClick={() => setShowHistory(!showHistory)}
+            onClick={() => {
+              isLoggedIn ? setShowHistory(!showHistory) : (
+                Swal.fire({
+                  icon: 'warning',
+                  showCancelButton: true,
+                  title: 'ياعم سجل الاول وبعدين شوف التفاصيل  ',
+                  text: 'عايز تشوف معاملات اي حد وخلاص ياخلبوص',
+                   confirmButtonText: "خلصانه وديني اسجل"
+                }).then((result) => {
+                  if (result.isConfirmed) {
+                    navigate("/login")
+                  }
+                }
+              ))
+            }}
           >
             {showHistory ? "Hide History" : "Show History"}
           </button>
