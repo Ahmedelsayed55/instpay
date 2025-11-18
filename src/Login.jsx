@@ -38,7 +38,7 @@ const Login = () => {
           handleSubmit(values);
         }}
       >
-        <Form className="flex flex-col gap-4 p-8 border rounded shadow w-1/3">
+        <Form className="flex flex-col gap-4 p-8 border rounded shadow w-full lg:w-1/3">
           <h1 className="text-2xl font-bold">Login</h1>
           <Field
             name="username"
