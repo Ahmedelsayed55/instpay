@@ -6,12 +6,18 @@ import * as Yup from "yup";
 const Login = () => {
   const navigate = useNavigate();
   const handleSubmit = (values) => {
-    const dataVrified = true;
-    if (dataVrified) {
+    const dataVerified = true;
+    if (dataVerified) {
       toast.success("تم تسجيل الدخول بنجاح");
       navigate("/");
       localStorage.setItem("userToken", "loggedIn");
       localStorage.setItem("userName", values.username);
+      const userData = {
+        username: values.username,
+        email: values.email,
+        password: values.password,
+      };
+      localStorage.setItem("userData", JSON.stringify(userData));
     } else {
       toast.error("فشل تسجيل الدخول");
     }
@@ -52,6 +58,7 @@ const Login = () => {
             className="text-red-500 text-sm"
           />
           <Field
+          
             name="email"
             placeholder="Email"
             className="p-2 border rounded w-full input input-info"
