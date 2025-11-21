@@ -1,44 +1,22 @@
-import { ErrorMessage, Field, Form, Formik } from "formik";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import Swal from "sweetalert2";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { BiShowAlt } from "react-icons/bi";
-const Login = () => {
+const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const [userData] = useState(
-    JSON.parse(localStorage.getItem("userData")) || {}
-  );
   const navigate = useNavigate();
   const handleSubmit = (values) => {
-    if (
-      userData.password === values.password &&
-      userData.email === values.email
-    ) {
-      toast.success("تم تسجيل الدخول بنجاح");
-      navigate("/");
-      localStorage.setItem("userToken", "loggedIn");
-      localStorage.setItem("userName", values.username);
-      const userData = {
-        username: values.username,
-        email: values.email,
-        password: values.password,
-      };
-      localStorage.setItem("userData", JSON.stringify(userData));
-    } else {
-      toast.error("فشل تسجيل الدخول");
-      Swal.fire({
-        icon: "warning",
-        showCancelButton: true,
-        title: "البيانات دي مش صح يامعلم 😡👊",
-        confirmButtonText: "خلصانه وديني اسجل",
-      }).then((result) => {
-        if (result.isConfirmed) {
-          navigate("/register");
-        }
-      });
-    }
+    toast.success("تم التسجيل بنجاح");
+    navigate("/login");
+    localStorage.setItem("userName", values.username);
+    const userData = {
+      username: values.username,
+      email: values.email,
+      password: values.password,
+    };
+    localStorage.setItem("userData", JSON.stringify(userData));
   };
   const validateSchema = Yup.object({
     email: Yup.string()
@@ -64,7 +42,7 @@ const Login = () => {
         }}
       >
         <Form className="flex flex-col gap-4 p-8 border rounded shadow w-full lg:w-1/3">
-          <h1 className="text-2xl font-bold">Login</h1>
+          <h1 className="text-2xl font-bold">Register</h1>
           <Field
             name="username"
             placeholder="User Name"
@@ -85,20 +63,20 @@ const Login = () => {
             component="p"
             className="text-red-500 text-sm"
           />
-          <div className="flex items-center w-full relative" >
-          <Field
-            name="password"
-            type={showPassword ? "text" : "password"}
-            placeholder="Password"
-            className="p-2 border rounded w-full input input-info "
-          />
-          <button
-            type="button"
-            className=" absolute right-0 bg-transparent border-0 btn text-2xl"
-            onClick={() => setShowPassword(!showPassword)}
-          >
-           <BiShowAlt />
-          </button>
+          <div className="flex items-center w-full relative">
+            <Field
+              name="password"
+              type={showPassword ? "text" : "password"}
+              placeholder="Password"
+              className="p-2 border rounded w-full input input-info "
+            />
+            <button
+              type="button"
+              className=" absolute right-0 bg-transparent border-0 btn text-2xl"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              <BiShowAlt />
+            </button>
           </div>
           <ErrorMessage
             name="password"
@@ -114,4 +92,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;

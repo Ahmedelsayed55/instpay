@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import Login from './Login'
 import UserControl from './UserControl'
+import Register from './Register'
 
 
 const App = () => {
@@ -15,6 +16,7 @@ const App = () => {
         <Routes>
           <Route path='/' element={<InstPay/>}/>
           <Route path='/login' element={<Login/>}/>
+          <Route path='/register' element={<Register/>}/>
           <Route path='/user-control' element={<UserControl/>}/>
         </Routes>
       </BrowserRouter>

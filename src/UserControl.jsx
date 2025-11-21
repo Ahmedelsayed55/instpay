@@ -3,7 +3,9 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import * as Yup from "yup";
+import { BiShowAlt } from "react-icons/bi";
 const UserControl = () => {
+    const [showPassword, setShowPassword] = useState(false);
   const [user, setUser] = useState({});
   const [userName, setUserName] = useState();
   
@@ -50,7 +52,7 @@ const UserControl = () => {
               }}
             >
               <Form className="flex flex-col gap-4 p-8 border rounded shadow w-full lg:w-1/3 m-auto">
-                <h1 className="text-2xl font-bold">Login</h1>
+                <h1 className="text-2xl font-bold">User Control</h1>
                 <Field
                
                   name="username"
@@ -73,13 +75,21 @@ const UserControl = () => {
                   component="p"
                   className="text-red-500 text-sm"
                 />
-                <Field
-                
-                  name="password"
-                  type="password"
-                  placeholder="Password"
-                  className="p-2 border rounded w-full input input-info"
-                />
+                <div className="flex items-center w-full relative">
+                         <Field
+                           name="password"
+                           type={showPassword ? "text" : "password"}
+                           placeholder="Password"
+                           className="p-2 border rounded w-full input input-info "
+                         />
+                         <button
+                           type="button"
+                           className=" absolute right-0 bg-transparent border-0 btn text-2xl"
+                           onClick={() => setShowPassword(!showPassword)}
+                         >
+                           <BiShowAlt />
+                         </button>
+                       </div>
                 <ErrorMessage
                   name="password"
                   component="p"
