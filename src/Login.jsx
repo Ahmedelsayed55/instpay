@@ -32,6 +32,8 @@ const Login = () => {
         icon: "warning",
         showCancelButton: true,
         title: "البيانات دي مش صح يامعلم 😡👊",
+        text: "تحب تسجل جديد ولا هتجرب تاني؟",
+        cancelButtonText: "هجرب تاني",
         confirmButtonText: "خلصانه وديني اسجل",
       }).then((result) => {
         if (result.isConfirmed) {

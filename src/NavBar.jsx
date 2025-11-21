@@ -6,7 +6,6 @@ const NavBar = () => {
 
     const [userName]= useState(localStorage.getItem("userName") || "Guest");
     const deleteToken = () => {
-      localStorage.removeItem("userData");
       localStorage.removeItem("userToken");
       localStorage.removeItem("userName");
     }
